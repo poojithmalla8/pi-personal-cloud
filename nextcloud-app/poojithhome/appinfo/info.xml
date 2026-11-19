@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+  <id>poojithhome</id>
+  <name>Poojith Home</name>
+  <summary>"My Cloud" dashboard widget: storage bar, new folder, upload, root folders</summary>
+  <description>Adds a friendly My Cloud widget to the Nextcloud Dashboard (storage bar, file shortcuts, and a System card with CPU temperature, network and estimated power) plus a mobile-first installable web app at /apps/poojithhome/.</description>
+  <version>1.2.0</version>
+  <licence>agpl</licence>
+  <author>Poojith Malla</author>
+  <namespace>PoojithHome</namespace>
+  <category>dashboard</category>
+  <dependencies>
+    <nextcloud min-version="28" max-version="34"/>
+  </dependencies>
+</info>

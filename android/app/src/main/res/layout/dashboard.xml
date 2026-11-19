@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F4F8FB">
+  <com.google.android.material.appbar.MaterialToolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+    android:background="#0082C9" app:title="@string/app_name" app:titleTextColor="#FFFFFF"/>
+  <TextView android:id="@+id/heatBanner" android:visibility="gone" android:background="#E53935" android:textColor="#FFFFFF" android:textStyle="bold"
+    android:textSize="16sp" android:padding="12dp" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+  <LinearLayout android:id="@+id/setupBox" android:orientation="vertical" android:gravity="center" android:padding="32dp" android:visibility="gone"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:src="@drawable/ic_launcher" android:layout_width="120dp" android:layout_height="120dp"/>
+    <TextView android:text="Welcome to My Pi Cloud" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <TextView android:text="Enter the address of your Nextcloud server. If you reach it over Tailscale, use the Tailscale IP and port, for example http://100.x.x.x:8080"
+      android:gravity="center" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:hint="Server address">
+      <com.google.android.material.textfield.TextInputEditText android:id="@+id/serverInput" android:inputType="textUri" android:singleLine="true"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton android:id="@+id/saveServerBtn" android:text="Save and continue" android:layout_marginTop="16dp" android:layout_width="match_parent" android:layout_height="64dp" android:textSize="18sp"/>
+  </LinearLayout>
+  <LinearLayout android:id="@+id/loginBox" android:orientation="vertical" android:gravity="center" android:padding="32dp" android:visibility="gone"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:src="@drawable/ic_launcher" android:layout_width="120dp" android:layout_height="120dp"/>
+    <TextView android:text="Welcome to your cloud" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <TextView android:id="@+id/loginStatus" android:text="Make sure Tailscale is connected, then sign in." android:gravity="center" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <com.google.android.material.button.MaterialButton android:id="@+id/loginBtn" android:text="Sign in" android:layout_marginTop="24dp" android:layout_width="match_parent" android:layout_height="64dp" android:textSize="18sp"/>
+  </LinearLayout>
+  <LinearLayout android:id="@+id/mainBox" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="12dp" app:cardCornerRadius="16dp">
+      <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:text="Storage" android:textStyle="bold" android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <LinearLayout android:id="@+id/bar" android:orientation="horizontal" android:layout_marginTop="10dp" android:layout_width="match_parent" android:layout_height="22dp" android:background="#DDDDDD">
+          <View android:id="@+id/barUsed" android:background="#E53935" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0"/>
+          <View android:id="@+id/barFree" android:background="#43A047" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView android:id="@+id/quotaText" android:text="Loading…" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+      </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView android:id="@+id/sysCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="12dp" android:layout_marginBottom="12dp" app:cardCornerRadius="16dp">
+      <LinearLayout android:orientation="vertical" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+          <TextView android:text="System" android:textStyle="bold" android:textSize="18sp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"/>
+          <TextView android:id="@+id/tempText" android:text="…" android:textStyle="bold" android:textSize="18sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="22dp" android:background="#DDDDDD">
+          <View android:id="@+id/tempFill" android:background="#43A047" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0"/>
+          <View android:id="@+id/tempRest" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView android:id="@+id/sysSummary" android:text="Loading…" android:layout_marginTop="6dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/sysDetails" android:visibility="gone" android:layout_marginTop="6dp" android:fontFamily="monospace" android:textSize="13sp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+      </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <LinearLayout android:orientation="horizontal" android:paddingHorizontal="12dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+      <com.google.android.material.button.MaterialButton android:id="@+id/newFolderBtn" android:text="New folder" android:layout_marginEnd="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="64dp" android:textSize="16sp"/>
+      <com.google.android.material.button.MaterialButton android:id="@+id/uploadBtn" android:text="Upload" android:layout_marginStart="6dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="64dp" android:textSize="16sp"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/progressBox" android:orientation="vertical" android:paddingHorizontal="16dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
+      <TextView android:id="@+id/progressText" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+      <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/progress" android:max="1000" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView android:id="@+id/pathText" android:textStyle="bold" android:paddingHorizontal="16dp" android:paddingTop="10dp" android:text="Home" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swipe" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+      <ListView android:id="@+id/list" android:divider="#E0E0E0" android:dividerHeight="1dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <TextView android:id="@+id/emptyText" android:visibility="gone" android:gravity="center" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <com.google.android.material.button.MaterialButton android:id="@+id/openWebBtn" style="@style/Widget.Material3.Button.OutlinedButton" android:text="Open full Nextcloud" android:layout_margin="12dp" android:layout_width="match_parent" android:layout_height="56dp"/>
+  </LinearLayout>
+</LinearLayout>

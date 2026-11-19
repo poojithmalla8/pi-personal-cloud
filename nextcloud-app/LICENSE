@@ -1,0 +1,10 @@
+The Nextcloud app in this directory (poojithhome) is licensed under the
+GNU Affero General Public License v3.0, because Nextcloud itself is AGPL
+and third-party apps distributed for it need a compatible license.
+
+A copy of the GNU AGPL v3 is at:
+https://www.gnu.org/licenses/agpl-3.0.html
+
+The rest of the pi-personal-cloud repository (Android client, stats
+collector, Docker example, and documentation) is licensed under the MIT
+License; see the LICENSE file at the repository root.

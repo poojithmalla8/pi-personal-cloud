@@ -1,0 +1,32 @@
+# Secrets and local machine config
+.env
+local.properties
+*.keystore
+*.jks
+keystore/
+
+# Android / Gradle
+.gradle/
+**/build/
+*.apk
+*.ap_
+*.aab
+*.dex
+captures/
+.externalNativeBuild/
+.cxx/
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+*.swp
+
+# Collector runtime (never commit live stats)
+**/stats.json
+**/collector.log
+**/state
+cloud-stats/.lock
+
+# OS / misc
+Thumbs.db

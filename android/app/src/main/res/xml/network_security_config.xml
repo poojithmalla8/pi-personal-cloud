@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android's domain-config only matches exact hostnames, not CIDR ranges, so we
+  cannot allow cleartext just for 100.64.0.0/10 (Tailscale) or RFC1918 LAN IPs.
+
+  Cleartext HTTP is therefore permitted app-wide. This app is intended for a
+  private personal cloud reached over Tailscale (or a trusted LAN), not the
+  public internet. Prefer HTTPS if you put a reverse proxy in front of Nextcloud.
+-->
+<network-security-config>
+  <base-config cleartextTrafficPermitted="true"/>
+</network-security-config>

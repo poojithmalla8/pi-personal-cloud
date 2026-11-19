@@ -1,0 +1,45 @@
+# Example Nextcloud + MariaDB stack for a Raspberry Pi personal cloud.
+# Copy .env.example to .env and set strong passwords before starting.
+#
+# Host layout assumed by this file and by ../README.md:
+#   /mnt/data/nextcloud  -> container /var/www/html/data   (your files)
+#   /mnt/data/mariadb    -> container /var/lib/mysql       (database)
+# The Nextcloud application itself is kept in a named Docker volume so
+# upgrades do not require bind-mounting /var/www/html from the host.
+
+name: picloud
+
+services:
+  nextcloud_db:
+    image: mariadb:10.11
+    container_name: nextcloud_db
+    restart: unless-stopped
+    command: >
+      --transaction-isolation=READ-COMMITTED
+      --binlog-format=ROW
+      --innodb-file-per-table=1
+    env_file: .env
+    volumes:
+      - /mnt/data/mariadb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  nextcloud_app:
+    image: nextcloud:latest
+    container_name: nextcloud_app
+    restart: unless-stopped
+    depends_on:
+      nextcloud_db:
+        condition: service_healthy
+    env_file: .env
+    ports:
+      - "8080:80"
+    volumes:
+      - nextcloud_html:/var/www/html
+      - /mnt/data/nextcloud:/var/www/html/data
+
+volumes:
+  nextcloud_html:

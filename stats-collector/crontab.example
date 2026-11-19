@@ -1,0 +1,12 @@
+# Install as the unprivileged Pi user (the same user that can run `docker` without sudo):
+#   crontab -e
+# or:
+#   (crontab -l 2>/dev/null | grep -v cloud-stats/collector.sh; cat crontab.example) | crontab -
+#
+# Collect Pi and Nextcloud stats every minute. No root required.
+# Copy collector.sh to ~/cloud-stats/ and chmod +x it first.
+
+* * * * * $HOME/cloud-stats/collector.sh >>$HOME/cloud-stats/collector.log 2>&1
+
+# If your Nextcloud datadirectory inside the container is not /var/www/html/data:
+# * * * * * NC_DATADIR=/data/nextcloud $HOME/cloud-stats/collector.sh >>$HOME/cloud-stats/collector.log 2>&1
